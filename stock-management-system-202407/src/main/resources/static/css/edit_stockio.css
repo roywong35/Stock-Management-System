@@ -1,0 +1,9 @@
+body { background-color: #f8f9fa; }
+h1 { margin-top: 20px; font-size: 2rem; }
+.container { background-color: #ffffff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+.form-group.row { margin-bottom: 15px; }
+.form-control { margin-top: 5px; }
+.btn { font-size: 0.875rem; padding: 5px 10px; }
+.btn-primary, .btn-danger { margin-right: 10px; }
+.btn-outline-danger { margin-left: 10px; }
+.form-check-inline { margin-right: 10px; }

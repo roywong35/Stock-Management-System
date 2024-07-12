@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/edit_stock.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center" th:text="${stock.stockId != null ? '在庫情報登録' : '在庫情報編集'}"></h1>
+    <hr>
+
+    <form id="saveForm" th:action="@{/saveStock}" th:object="${stock}" method="POST">
+        <div class="form-group row">
+            <label for="stockId" class="col-sm-2 col-form-label">在庫ID</label>
+            <div class="col-sm-10">
+                <input type="text" id="stockId" th:field="*{stockId}" class="form-control" readonly>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="stockName" class="col-sm-2 col-form-label">在庫名称</label>
+            <div class="col-sm-10">
+                <input type="text" id="stockName" th:field="*{stockName}" class="form-control" maxlength="50" required>
+            </div>
+        </div>
+
+        <!-- Modify the unitId field to correctly bind to unit.unitId -->
+        <div class="form-group row">
+            <label for="unitId" class="col-sm-2 col-form-label">単位</label>
+            <div class="col-sm-10">
+                <select id="unitId" th:field="*{unit.unitId}" class="form-control" required>
+                    <option th:value="1">個</option>
+                    <option th:value="2">箱</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="stockNum" class="col-sm-2 col-form-label">在庫数</label>
+            <div class="col-sm-10">
+                <input type="number" id="stockNum" th:field="*{stockNum}" class="form-control" readonly>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="remarks" class="col-sm-2 col-form-label">備考</label>
+            <div class="col-sm-10">
+                <input type="text" id="remarks" th:field="*{remarks}" class="form-control" maxlength="200">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-info flex-grow-1" th:text="${stock.stockId != null ? '登録' : '更新'} " onclick="submitForm(event)"></button>
+                    <a href="/stock" class="btn btn-outline-danger flex-grow-1 ml-2">閉じる</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="/JavaScript/edit_stock.js"></script>
+
+</body>
+</html>
