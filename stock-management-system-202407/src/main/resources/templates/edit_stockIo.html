@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Management System</title>
+    <title>入出庫情報登録</title>
+    <link rel="icon" href="/123.png"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/edit_stockio.css">
 </head>
 <body>
 <div class="container">
-    <h1 class="text-center" th:text="${stockIo.ioId != null ? '入出庫情報編集' : '入出庫情報登録'}"></h1>
+    <h1 class="text-center">入出庫情報登録</h1>
     <hr>
 
     <form id="stockIoForm" th:action="@{/saveStockIo}" th:object="${stockIo}" method="POST">

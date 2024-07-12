@@ -58,20 +58,24 @@ public class StockController {
     // Method to show the edit stock form
     @GetMapping("/showEditStockForm")
     public String showEditStockForm(@RequestParam(value = "id", required = false) Long id, Model model) {
-        Stock stock = null;
-        if (id != null) {
+        Stock stock;
+        boolean isNew = (id == null);
+
+        if (!isNew) {
             stock = stockService.getStockById(id);
             if (stock == null) {
                 throw new RuntimeException("Stock with id " + id + " not found.");
             }
         } else {
-            stock = new Stock(); // Create a new Stock object for the form
-            // Set the next available stockId dynamically
+            stock = new Stock();
             long nextStockId = stockService.getNextStockId();
             stock.setStockId(nextStockId);
         }
+
         model.addAttribute("stock", stock);
-        return "edit_stock"; // Name of your Thymeleaf template
+        model.addAttribute("isNew", isNew);
+
+        return "edit_stock";
     }
 
 

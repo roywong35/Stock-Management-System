@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Management System</title>
+    <title th:text="${isNew ? '在庫情報登録' : '在庫情報編集'}"></title>
+    <link rel="icon" href="/123.png"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/edit_stock.css">
 </head>
 <body>
 <div class="container">
-    <h1 class="text-center" th:text="${stock.stockId != null ? '在庫情報登録' : '在庫情報編集'}"></h1>
+    <h1 class="text-center" th:text="${isNew ? '在庫情報登録' : '在庫情報編集'}"></h1>
     <hr>
 
     <form id="saveForm" th:action="@{/saveStock}" th:object="${stock}" method="POST">
