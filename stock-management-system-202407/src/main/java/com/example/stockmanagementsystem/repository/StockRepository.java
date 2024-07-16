@@ -6,9 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Long> {
+
+    @Query("SELECT s FROM Stock s WHERE s.stockId = :stockId AND s.delFlg = 0")
+    Optional<Stock> findByIdAndNotDeleted(@Param("stockId") Long stockId);
 
     @Query("SELECT MAX(s.stockId) FROM Stock s")
     Integer findMaxStockId();

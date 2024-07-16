@@ -42,7 +42,7 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public Stock getStockById(long id) {
-        Optional<Stock> optional = stockRepository.findById(id);
+        Optional<Stock> optional = stockRepository.findByIdAndNotDeleted(id);
         Stock stock = null;
         if (optional.isPresent()) {
             stock = optional.get();
@@ -63,7 +63,7 @@ public class StockServiceImpl implements StockService {
         BigDecimal sumIoNum = stockIoRepository.sumIoNumByStockId(stockId);
 
         // Get the Stock entity
-        Stock stock = stockRepository.findById(stockId).orElse(null);
+        Stock stock = stockRepository.findByIdAndNotDeleted(stockId).orElse(null);
 
         if (stock != null) {
             stock.setStockNum(sumIoNum != null ? sumIoNum : BigDecimal.ZERO);
