@@ -45,6 +45,12 @@ public class StockController {
         Map<Long, String> unitMap = units.stream()
                 .collect(Collectors.toMap(Unit::getUnitId, Unit::getUnitName));
 
+//        Same result:
+//        Map<Long, String> unitMap = new HashMap<>();
+//        for (Unit unit : units) {
+//            unitMap.put(unit.getUnitId(), unit.getUnitName());
+//        }
+
         // Update stock numbers before displaying
         for (Stock stock : stocks) {
             stockService.updateStockNum(stock.getStockId());
@@ -84,7 +90,7 @@ public class StockController {
     public ResponseEntity<String> saveStock(@ModelAttribute("stock") Stock stock) {
         try {
             stockService.saveStock(stock);
-            stockService.updateStockNum(stock.getStockId());
+            stockService.updateStockNum(stock.getStockId()); //Don't need
             return ResponseEntity.ok("在庫が正常に保存されました");
         } catch (DataIntegrityViolationException e) {
             // Handle unique constraint violation and format the message

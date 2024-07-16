@@ -52,10 +52,11 @@ public class StockServiceImpl implements StockService {
         return stock;
     }
 
-    @Override
-    public void deleteStockById(long id) {
-        this.stockRepository.deleteById(id);
-    }
+//    @Override
+//    public Stock getStockById(long id) {
+//        return stockRepository.findByIdAndNotDeleted(id)
+//                .orElseThrow(() -> new RuntimeException("Stock not found for id :: " + id));
+//    }
 
     @Transactional
     public void updateStockNum(Long stockId) {
