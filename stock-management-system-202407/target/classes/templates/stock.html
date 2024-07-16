@@ -72,7 +72,7 @@
             <td th:text="${stock.stockNum}"></td>
             <td th:text="${stock.remarks}"></td>
             <td>
-                <button class="btn btn-outline-primary btn-small" th:onclick="'window.location.href=\'/showEditStockForm?id=' + ${stock.stockId} + '\''">編集</button>
+                <a th:href="@{'/showEditStockForm?id='+ ${stock.stockId}}" class="btn btn-outline-primary btn-small">編集</a>
                 <a th:href="@{'/stockio?id=' + ${stock.stockId} + '&name=' + ${stock.stockName} + '&unit=' + ${stock.unit.unitName} + '&num=' + ${stock.stockNum}}" class="btn btn-outline-primary btn-small">入出庫一覧</a>
                 <a th:href="@{'/showEditStockIoForm?id=' + ${stock.stockId} + '&name=' + ${stock.stockName} + '&unit=' + ${stock.unit.unitName} + '&num=' + ${stock.stockNum}}" class="btn btn-outline-primary btn-small">入出庫登録</a>
             </td>
