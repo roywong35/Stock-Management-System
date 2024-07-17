@@ -1,7 +1,6 @@
 package com.example.stockmanagementsystem.model;
 
 import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 
 @Entity

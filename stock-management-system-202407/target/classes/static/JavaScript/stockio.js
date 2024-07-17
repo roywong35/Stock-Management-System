@@ -1,15 +1,9 @@
-function getUrlParameter(name) {
-    name = name.replace(/\[/, '\\[').replace(/\]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(location.search);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-}
-
 function prefillSearchInputs() {
-    document.getElementById('searchStockId').value = getUrlParameter('id');
-    document.getElementById('searchStockName').value = getUrlParameter('name');
-    document.getElementById('searchUnit').value = getUrlParameter('unit');
-    document.getElementById('searchStockNum').value = getUrlParameter('num');
+    const urlParams = new URLSearchParams(window.location.search);
+    document.getElementById('searchStockId').value = urlParams.get('id') || '';
+    document.getElementById('searchStockName').value = urlParams.get('name') || '';
+    document.getElementById('searchUnit').value = urlParams.get('unit') || '';
+    document.getElementById('searchStockNum').value = urlParams.get('num') || '';
 }
 
 window.onload = function () {
@@ -73,8 +67,7 @@ function search() {
     }
 
     // Display the calculated 在庫数量 sum for the matching 在庫ID in the search bar
-    var searchStockId = document.getElementById("searchStockId").value.trim();
-    document.getElementById("searchStockNum").value = stockNumSum[searchStockId] || 0;
+    document.getElementById("searchStockNum").value = stockNumSum[inputStockId] || 0;
 
     // Filter and display table rows based on search criteria
     for (var i = 0; i < tr.length; i++) {
@@ -91,17 +84,17 @@ function search() {
         var showRow = true;
 
         // Check if 在庫ID input matches
-        if (inputStockId && matchStockId.toLowerCase().indexOf(inputStockId) === -1) {
+        if (inputStockId && !matchStockId.toLowerCase().includes(inputStockId))  {
             showRow = false;
         }
 
         // Check if 在庫名称 input matches
-        if (inputStockName && matchStockName.toLowerCase().indexOf(inputStockName) === -1) {
+        if (inputStockName && !matchStockName.toLowerCase().includes(inputStockName)) {
             showRow = false;
         }
 
         // Check if 単位 input matches
-        if (inputUnit && matchUnit.toLowerCase().indexOf(inputUnit) === -1) {
+        if (inputUnit && !matchUnit.toLowerCase().includes(inputUnit)) {
             showRow = false;
         }
 

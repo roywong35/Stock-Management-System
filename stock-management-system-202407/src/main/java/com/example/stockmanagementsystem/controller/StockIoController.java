@@ -35,7 +35,7 @@ public class StockIoController {
         this.stockService = stockService;
     }
 
-    // Display list of stocks
+    // Display list of stockios
     @GetMapping("/stockio")
     public String getAllStockIo(Model model) {
         List<StockIo> stockIos = stockIoService.getAllStockIo();
@@ -78,17 +78,7 @@ public class StockIoController {
                 throw new RuntimeException("Stock not found for id: " + id);
             }
         } else {
-            Stock stock = new Stock();
-            if (stockName != null) {
-                stock.setStockName(stockName);
-            }
-            if (unit != null) {
-                stock.setUnit(new Unit(unit)); // Assuming you have a constructor in Unit that takes a String
-            }
-            if (stockNum != null) {
-                stock.setStockNum(stockNum); // Assuming stockNum is a field in the Stock entity
-            }
-            stockIo.setStock(stock);
+            throw new RuntimeException("Stock id is required. ");
         }
 
         // Set the next available ioId dynamically

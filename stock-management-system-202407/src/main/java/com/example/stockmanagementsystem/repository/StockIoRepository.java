@@ -27,9 +27,9 @@ public interface StockIoRepository extends JpaRepository<StockIo, Long> {
             "WHEN io.ioType = 5 THEN -io.ioNum " +
             "WHEN io.ioType = 6 THEN io.ioNum " +
             "ELSE 0 END) " +
-            "FROM StockIo io WHERE io.stock.id = :stockId AND io.delFlg = 0")
+            "FROM StockIo io WHERE io.stock.stockId = :stockId AND io.delFlg = 0")
     BigDecimal sumIoNumByStockId(@Param("stockId") Long stockId);
 
-    @Query("SELECT s FROM StockIo s WHERE s.delFlg = 0 AND s.stock.id = :stockId")
+    @Query("SELECT s FROM StockIo s WHERE s.delFlg = 0 AND s.stock.stockId = :stockId")
     List<StockIo> findActiveStockIoByStockId(@Param("stockId") long stockId);
 }
