@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>employee-management-system-202406</artifactId>
+	<artifactId>stock-management-system-202407</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>employee-management-system-202406</name>
-	<description>A employee management system made in 202406</description>
+	<name>stock-management-system-202407</name>
+	<description>A stock management system made in 202407</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
